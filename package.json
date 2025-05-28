@@ -1,0 +1,24 @@
+{
+  "name": "iblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParasP41/iBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ParasP41/iBlog/issues"
+  },
+  "homepage": "https://github.com/ParasP41/iBlog#readme",
+  "dependencies": {
+    "prettier": "^3.5.3"
+  }
+}
