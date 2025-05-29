@@ -9,5 +9,7 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 
+import userRouter from './routes/user.route.js'
+app.use('/api/v1/users', userRouter)
 
 export { app };
