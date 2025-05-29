@@ -1,0 +1,14 @@
+import express from 'express';
+import cookieParser from 'cookie-parser';
+const app=express();
+
+app.use(express.json({limit:"20kb"}));
+app.use(express.urlencoded({extended:true,limit:"20kb"}));
+app.use(express.static('public'));
+app.use(cookieParser());
+app.set('view engine', 'ejs');
+
+
+
+
+export {app};
