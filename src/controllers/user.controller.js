@@ -11,64 +11,92 @@ const options = {
 
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, userName, email, password } = req.body;
-    const existingUser = await User.findOne({
-        $or: [{ userName }, { email }]
-    })
 
     if (!firstName || !lastName || !userName || !email || !password) {
-        throw new ApiError(400, "REQUIRED FIELD IS MISSING ( firstName, lastName, username, email, password )")
+        throw new ApiError(400, "REQUIRED FIELD IS MISSING ( firstName, lastName, username, email, password )");
     }
 
-    if (existingUser) {
-        throw new ApiError(400, "USER ALREADY EXIST");
-    }
-
-    bcrypt.genSalt(10, async function (err, salt) {
-        bcrypt.hash(password, salt, async function (err, hash) {
-            const user = await User.create({
-                firstName,
-                lastName,
-                userName,
-                email,
-                password: hash
-            })
-
-
-            const createdUser = await User.findById(user._id).select("-password");
-            let token = jwt.sign({
-                _id: user._id,
-                email: user.email,
-                username: user.userName,
-            },
-                process.env.ACCESS_TOKEN_SECRET,
-                {
-                    expiresIn: process.env.ACCESS_TOKEN_EXPIRY
-                }
-            )
-
-            return res.status(200)
-                .cookie("token", token, options)
-                .json(new ApiResponse(200, createdUser, "USER LOGGEDIN SUCCESSFULLY"));
-        });
-
+    const existingUser = await User.findOne({
+        $or: [{ userName }, { email }]
     });
 
-})
+    if (existingUser) {
+        throw new ApiError(400, "USER ALREADY EXISTS");
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = await User.create({
+        firstName,
+        lastName,
+        userName,
+        email,
+        password: hashedPassword
+    });
+
+    const createdUser = await User.findById(user._id).select("-password");
+
+    const token = jwt.sign(
+        {
+            _id: user._id,
+            email: user.email,
+            username: user.userName,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+        }
+    );
+
+    return res.status(200)
+        .cookie("token", token, options)
+        .json(new ApiResponse(200, createdUser, "USER REGISTERED SUCCESSFULLY"));
+});
+
 
 const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        throw new ApiError(400, "REQUIRED FIELD IS MISSING ( email, password )")
+        throw new ApiError(400, "REQUIRED FIELD IS MISSING ( email, password )");
     }
 
-    bcrypt.hash(password, 10,async function (err, hash) {
-        const user = await User.findOne({
-            $and:[{email},{hash}]
-        })
-        res.send(user);
-        console.log(user)
-    });
+    const user = await User.findOne({ email });
+
+    if (!user) {
+        throw new ApiError(401, "INVALID EMAIL OR PASSWORD");
+    }
+
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordMatch) {
+        throw new ApiError(401, "INVALID EMAIL OR PASSWORD");
+    }
+
+    const loggedUser = await User.findById(user._id).select("-password");
+
+    const token = jwt.sign(
+        {
+            _id: user._id,
+            email: user.email,
+            username: user.userName,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+        }
+    );
+
+    return res.status(200)
+        .cookie("token", token, options)
+        .json(new ApiResponse(200, loggedUser, "USER REGISTERED SUCCESSFULLY"));
+
+});
+
+
+const logout=asyncHandler(async(req,res)=>{
+    res.send("kjjkj")
 })
 
-export { registerUser, login }
+export { registerUser, login,logout }
