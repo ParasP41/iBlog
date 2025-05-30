@@ -9,7 +9,16 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 
+
+//Auth Routes
 import userRouter from './routes/user.route.js'
+app.use("/",userRouter);
 app.use('/api/v1/users', userRouter)
+
+
+
+//Post Routes
+import postRouter from './routes/post.route.js'
+app.use('/api/v1/users', postRouter)
 
 export { app };

@@ -9,6 +9,12 @@ const options = {
     secure: true
 }
 
+
+const index=asyncHandler(async(req,res)=>
+{
+    res.render('index');
+})
+
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, userName, email, password } = req.body;
 
@@ -95,8 +101,19 @@ const login = asyncHandler(async (req, res) => {
 });
 
 
-const logout=asyncHandler(async(req,res)=>{
-    res.send("kjjkj")
-})
+const logout = asyncHandler(async (req, res) => {
+    const loggedOutUser = req.user;
 
-export { registerUser, login,logout }
+    return res.status(200)
+    .cookie("token", "", options)
+    .json(
+        new ApiResponse(
+            200,
+            { loggedOutUser },
+            "USER LOGGED OUT SUCCESSFULLY"
+        )
+    );
+});
+
+
+export { registerUser, login, logout ,index};

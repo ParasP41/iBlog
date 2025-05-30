@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="bg-gray-900 text-white sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer"
+                    onclick="togglePopover()">
+                    <div
+                        class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">B</span>
+                    </div>
+                    <span class="text-xl font-bold">BlogSpace</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/"
+                        class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">Home</a>
+                    <a href="/category/all"
+                        class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">Categories</a>
+                    <a href="/about"
+                        class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">About</a>
+                    <a href="/contact"
+                        class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">Contact</a>
+                </div>
+
+                <!-- Search and Auth -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <form action="/search" method="GET" class="relative">
+                        <input type="text" name="query" placeholder="Search posts..."
+                            class="w-64 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-blue-500" />
+                        <button type="submit"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                            <i class="lucide lucide-search" style="width: 18px; height: 18px;"></i>
+                        </button>
+                    </form>
+                    <a href="/login" class="flex items-center px-3 py-2 hover:bg-gray-700 rounded text-sm">
+                        <i class="lucide lucide-user mr-2" style="width: 18px; height: 18px;"></i>
+                        Login
+                    </a>
+                    <a href="/signup" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm">
+                        Sign Up
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i class="lucide lucide-menu text-white" style="width: 24px; height: 24px;"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden py-4 border-t border-gray-800">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="text-gray-300 hover:text-white transition-colors duration-200 py-2">Home</a>
+                    <a href="/category/all"
+                        class="text-gray-300 hover:text-white transition-colors duration-200 py-2">Categories</a>
+                    <a href="/about"
+                        class="text-gray-300 hover:text-white transition-colors duration-200 py-2">About</a>
+                    <a href="/contact"
+                        class="text-gray-300 hover:text-white transition-colors duration-200 py-2">Contact</a>
+
+                    <div class="pt-4 border-t border-gray-800">
+                        <form action="/search" method="GET" class="mb-4">
+                            <div class="relative">
+                                <input type="text" name="query" placeholder="Search posts..."
+                                    class="w-full bg-gray-800 border-gray-700 text-white placeholder-gray-400" />
+                                <button type="submit"
+                                    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                    <i class="lucide lucide-search" style="width: 18px; height: 18px;"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <a href="/login" class="flex items-center px-3 py-2 hover:bg-gray-700 rounded text-sm">
+                            <i class="lucide lucide-user mr-2" style="width: 18px; height: 18px;"></i>
+                            Login
+                        </a>
+                        <a href="/signup" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm">
+                            Sign Up
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+</html>
