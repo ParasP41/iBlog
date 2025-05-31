@@ -1,0 +1,51 @@
+<div class="rounded-lg border bg-white shadow-sm">
+    <div class="p-6">
+        <h3 class="text-lg font-semibold leading-none tracking-tight">Profile Settings</h3>
+        <p class="text-sm text-gray-400">Update your personal information and preferences</p>
+    </div>
+    <div class="p-6 pt-0 space-y-6">
+        <div class="flex items-center space-x-6">
+            <div class="relative flex h-20 w-20 shrink-0 overflow-hidden rounded-full">
+                <div class="flex h-full w-full items-center justify-center rounded-full bg-gray-100">
+                    <span class="font-medium text-gray-600">US</span>
+                </div>
+            </div>
+            <div>
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gray-200 bg-white hover:bg-gray-100 hover:text-gray-900 h-10 px-4 py-2">
+                    Change Avatar
+                </button>
+                <p class="text-sm text-gray-500 mt-2">Upload a new profile picture</p>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium mb-2">First Name</label>
+                <input class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="First name" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Last Name</label>
+                <input class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Last name" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Email</label>
+                <input type="email" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Email address" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Role</label>
+                <input disabled class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-100" value="User" />
+            </div>
+        </div>
+        
+        <div>
+            <label class="block text-sm font-medium mb-2">Bio</label>
+            <textarea class="flex min-h-[80px] w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Tell us about yourself"></textarea>
+        </div>
+        
+        <div class="flex justify-end">
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-600/90 h-10 px-4 py-2">
+                Save Changes
+            </button>
+        </div>
+    </div>
+</div>

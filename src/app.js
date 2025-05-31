@@ -12,9 +12,10 @@ app.set('view engine', 'ejs');
 
 //Auth Routes
 import userRouter from './routes/user.route.js'
-app.use("/",userRouter);
 app.use('/api/v1/users', userRouter)
 
+//EJS Routes
+app.use("/",userRouter);
 
 
 //Post Routes

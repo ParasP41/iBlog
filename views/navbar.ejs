@@ -16,16 +16,17 @@
                 <!-- Logo -->
                 <div class="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer"
                     onclick="togglePopover()">
-                    <div
-                        class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">B</span>
-                    </div>
-                    <span class="text-xl font-bold">BlogSpace</span>
+                    <a href="/dashboard">
+                        <div class="w-8 h-8 rounded-lg overflow-hidden">
+                            <img src="https://via.placeholder.com/32" alt="Avatar" class="w-full h-full object-cover" />
+                        </div>
+                    </a>
+                    <a href="/" class="text-xl font-bold">BlogSpace</a>
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/"
+                    <a href="/home"
                         class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">Home</a>
                     <a href="/category/all"
                         class="text-gray-300 hover:text-white transition-colors duration-200 font-medium">Categories</a>

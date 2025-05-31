@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <%- include('./navbar.ejs') %>
+    
+    
+
+<div class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+        About BlogSpace
+      </h1>
+      <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+        We're a team of passionate writers, developers, and designers committed to sharing 
+        knowledge and inspiring the next generation of digital creators.
+      </p>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="mb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
+          <p class="text-lg text-gray-600 mb-6">
+            At BlogSpace, we believe that knowledge should be accessible to everyone. Our mission 
+            is to create a platform where experts and enthusiasts can share their insights, 
+            experiences, and discoveries across technology, design, business, and lifestyle.
+          </p>
+          <p class="text-lg text-gray-600 mb-8">
+            We're dedicated to producing high-quality, well-researched content that not only 
+            informs but also inspires our readers to pursue their passions and advance their careers.
+          </p>
+          <button class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Join Our Community</button>
+        </div>
+        <div class="relative">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
+            alt="Team collaboration"
+            class="rounded-xl shadow-lg"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+  <% const values = [
+  {
+    title: "Innovation",
+    color: "blue",
+    description: "We embrace new technologies and methodologies, always looking for better ways to solve problems and create value.",
+    svgPath: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+  },
+  {
+    title: "Quality",
+    color: "green",
+    description: "Every piece of content we publish meets our high standards for accuracy, depth, and practical value.",
+    svgPath: "M12 6.253v13m0-13C10.832 5.75 9.5 5 8 5s-2.832.75-4 1.253M12 6.253C13.168 5.75 14.5 5 16 5s2.832.75 4 1.253"
+  },
+  {
+    title: "Community",
+    color: "purple",
+    description: "We foster an inclusive environment where everyone can learn, share, and grow together.",
+    svgPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M9 20H4v-2a3 3 0 015.356-1.857M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 0a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+  }
+]; %>
+
+<% const bgMap = { blue: 'bg-blue-100', green: 'bg-green-100', purple: 'bg-purple-100' }; %>
+<% const textMap = { blue: 'text-blue-600', green: 'text-green-600', purple: 'text-purple-600' }; %>
+
+<section class="mb-20">
+  <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Our Values</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <% values.forEach(v => { %>
+      <div class="text-center">
+        <div class="w-16 h-16 <%= bgMap[v.color] %> rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 <%= textMap[v.color] %>" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<%= v.svgPath %>"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4"><%= v.title %></h3>
+        <p class="text-gray-600"><%= v.description %></p>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+
+    <!-- Team Section -->
+    <section class="mb-20">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Meet Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <%# team.forEach(member => { %>
+          <div class="text-center bg-white rounded-xl p-6 shadow-lg">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 flex items-center justify-center text-xl">
+              <%#= member.avatar %>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2"><%#= member.name %></h3>
+            <p class="text-blue-600 font-medium mb-3"><%#= member.role %></p>
+            <p class="text-gray-600 text-sm mb-4"><%#= member.bio %></p>
+            <div class="flex justify-center space-x-3">
+              <%# Object.entries(member.social).forEach(([platform, url]) => { %>
+                <a href="<%#= url %>" class="text-gray-400 hover:text-gray-600 transition-colors">
+                  <span class="sr-only"><%#= platform %></span>
+                  <!-- You can replace this with actual platform icons -->
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="...GitHub-like icon path..." />
+                  </svg>
+                </a>
+              <%# }) %>
+            </div>
+          </div>
+        <%# }) %>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-center text-white">
+      <h2 class="text-3xl font-bold mb-4">Want to Write for BlogSpace?</h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        We're always looking for passionate writers to join our community. 
+        Share your expertise and reach thousands of readers worldwide.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100">Become a Writer</button>
+        <a href="/contact" class="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-blue-600">Contact Us</a>
+      </div>
+    </section>
+
+  </div>
+</div>
+<%- include('./footer') %>
+
+</body>
+</html>

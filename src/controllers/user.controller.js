@@ -10,10 +10,59 @@ const options = {
 }
 
 
-const index=asyncHandler(async(req,res)=>
+const indexPage=asyncHandler(async(req,res)=>
 {
     res.render('index');
 })
+
+const aboutPage=asyncHandler(async(req,res)=>
+{
+    res.render('about');
+})
+const contactPage=asyncHandler(async(req,res)=>
+{
+    res.render('contact');
+})
+
+const homePage=asyncHandler(async(req,res)=>
+{
+    res.render('home');
+})
+
+const dashboardPage=asyncHandler(async(req,res)=>
+{
+    res.render('dashboard');
+})
+
+const categoryPage=asyncHandler(async(req,res)=>
+{
+    res.render('category', {
+  category: 'all',
+  startIndex: 0,
+  endIndex: 9,
+  sortedPosts: [], // or actual posts array
+  sortBy: 'latest',
+  currentPosts: [], // or actual current posts array
+  totalPages: 1,
+  currentPage: 1
+});
+})
+
+
+
+const blogPostPage = asyncHandler(async (req, res) => {
+    res.render('tabs/createpost');
+})
+const loginPage = asyncHandler(async (req, res) => {
+    res.render('login');
+})
+
+const signUpPage = asyncHandler(async (req, res) => {
+    res.render('signup');
+})
+
+
+
 
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, userName, email, password } = req.body;
@@ -105,15 +154,18 @@ const logout = asyncHandler(async (req, res) => {
     const loggedOutUser = req.user;
 
     return res.status(200)
-    .cookie("token", "", options)
-    .json(
-        new ApiResponse(
-            200,
-            { loggedOutUser },
-            "USER LOGGED OUT SUCCESSFULLY"
-        )
-    );
+        .cookie("token", "", options)
+        .json(
+            new ApiResponse(
+                200,
+                { loggedOutUser },
+                "USER LOGGED OUT SUCCESSFULLY"
+            )
+        );
 });
 
 
-export { registerUser, login, logout ,index};
+export {
+    registerUser, login, logout,
+    indexPage, loginPage, signUpPage,aboutPage,contactPage,categoryPage,homePage,dashboardPage,blogPostPage
+};

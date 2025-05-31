@@ -2,119 +2,78 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
 </head>
 
 <body>
-    <%- include('./navbar.ejs') %>
+  <%- include('./navbar.ejs') %>
 
-
-
-        <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-            <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                <div class="max-w-md w-full space-y-8">
-                    <div>
-                        <h2 class="mt-6 text-center text-3xl font-bold text-gray-900 dark:text-white">
-                            Sign in to your account
-                        </h2>
-                        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-                            Or
-                            <a href="/signup" class="font-medium text-blue-600 hover:text-blue-500">
-                                create a new account
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-                        <form action="/login" method="POST" class="space-y-6">
-                            <div>
-                                <label for="email"
-                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                    Email address
-                                </label>
-                                <input id="email" name="email" type="email" required placeholder="Enter your email"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500" />
-                            </div>
-
-                            <div>
-                                <label for="password"
-                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                    Password
-                                </label>
-                                <div class="relative">
-                                    <input id="password" name="password" type="password" required
-                                        placeholder="Enter your password"
-                                        class="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500" />
-                                    <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                        <!-- Password toggle JS required -->
-                                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor"
-                                            stroke-width="2" viewBox="0 0 24 24">
-                                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7S3.732 16.057 2.458 12z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-2">
-                                    <input type="checkbox" id="rememberMe" name="rememberMe"
-                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
-                                    <label for="rememberMe" class="text-sm text-gray-700 dark:text-gray-300">
-                                        Remember me
-                                    </label>
-                                </div>
-
-                                <a href="#" class="text-sm text-blue-600 hover:text-blue-500">
-                                    Forgot your password?
-                                </a>
-                            </div>
-
-                            <button type="submit"
-                                class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-500">
-                                Sign in
-                            </button>
-                        </form>
-
-                        <div class="mt-6">
-                            <div class="relative">
-                                <div class="absolute inset-0 flex items-center">
-                                    <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
-                                </div>
-                                <div class="relative flex justify-center text-sm">
-                                    <span class="px-2 bg-white dark:bg-gray-800 text-gray-500">Or continue with</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 grid grid-cols-2 gap-3">
-                                <button type="button"
-                                    class="w-full flex items-center justify-center border border-gray-300 rounded-md py-2 px-4 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483..." />
-                                    </svg>
-                                    <span class="ml-2">GitHub</span>
-                                </button>
-
-                                <button type="button"
-                                    class="w-full flex items-center justify-center border border-gray-300 rounded-md py-2 px-4 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                    <svg class="w-5 h-5" viewBox="0 0 24 24">
-                                        <path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92..." />
-                                    </svg>
-                                    <span class="ml-2">Google</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="min-h-screen bg-gray-50">
+    <div class="flex items-center justify-center py-22 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
+            Sign in to your account
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            Or
+            <a href="/signup" class="font-medium text-blue-600 hover:text-blue-500">
+              create a new account
+            </a>
+          </p>
         </div>
-        <%- include('./footer') %>
 
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <form action="/login" method="POST" class="space-y-8">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                Email address
+              </label>
+              <input id="email" name="email" type="email" required placeholder="Enter your email"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
 
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                Password
+              </label>
+              <div class="relative">
+                <input id="password" name="password" type="password" required placeholder="Enter your password"
+                  class="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500" />
+                <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7S3.732 16.057 2.458 12z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <input type="checkbox" id="rememberMe" name="rememberMe"
+                  class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
+                <label for="rememberMe" class="text-sm text-gray-700">
+                  Remember me
+                </label>
+              </div>
+            </div>
+
+            <button type="submit"
+              class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-500">
+              Sign in
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('./footer') %>
 </body>
 
 </html>
