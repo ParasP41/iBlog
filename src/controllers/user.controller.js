@@ -10,65 +10,18 @@ const options = {
 }
 
 
-const indexPage=asyncHandler(async(req,res)=>
-{
-    res.render('index');
-})
-
-const aboutPage=asyncHandler(async(req,res)=>
-{
-    res.render('about');
-})
-const contactPage=asyncHandler(async(req,res)=>
-{
-    res.render('contact');
-})
-
-const homePage=asyncHandler(async(req,res)=>
-{
-    res.render('home');
-})
-
-const dashboardPage=asyncHandler(async(req,res)=>
-{
-    res.render('dashboard');
-})
-
-const categoryPage=asyncHandler(async(req,res)=>
-{
-    res.render('category', {
-  category: 'all',
-  startIndex: 0,
-  endIndex: 9,
-  sortedPosts: [], // or actual posts array
-  sortBy: 'latest',
-  currentPosts: [], // or actual current posts array
-  totalPages: 1,
-  currentPage: 1
-});
-})
-
-
-
-const blogPostPage = asyncHandler(async (req, res) => {
-    res.render('tabs/createpost');
-})
-const loginPage = asyncHandler(async (req, res) => {
-    res.render('login');
-})
-
-const signUpPage = asyncHandler(async (req, res) => {
-    res.render('signup');
-})
-
-
-
 
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, userName, email, password } = req.body;
+    const confirm_password=req.body;
 
-    if (!firstName || !lastName || !userName || !email || !password) {
+    if (!firstName || !lastName || !userName || !email || !password || !confirm_password) {
         throw new ApiError(400, "REQUIRED FIELD IS MISSING ( firstName, lastName, username, email, password )");
+    }
+
+    if(confirm_password===password)
+    {
+        throw new ApiError(400,"IMVALID CRDENTIALS");
     }
 
     const existingUser = await User.findOne({
@@ -107,6 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
     return res.status(200)
         .cookie("token", token, options)
         .json(new ApiResponse(200, createdUser, "USER REGISTERED SUCCESSFULLY"));
+
 });
 
 
@@ -147,6 +101,7 @@ const login = asyncHandler(async (req, res) => {
         .cookie("token", token, options)
         .json(new ApiResponse(200, loggedUser, "USER REGISTERED SUCCESSFULLY"));
 
+
 });
 
 
@@ -165,7 +120,9 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 
+``
+
 export {
     registerUser, login, logout,
-    indexPage, loginPage, signUpPage,aboutPage,contactPage,categoryPage,homePage,dashboardPage,blogPostPage
+    
 };
