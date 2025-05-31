@@ -120,8 +120,6 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 
-``
-
 export {
     registerUser, login, logout,
     

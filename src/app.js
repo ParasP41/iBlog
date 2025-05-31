@@ -6,7 +6,6 @@ app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
 app.use(express.static('public'));
 app.use(cookieParser());
-app.set('view engine', 'ejs');
 
 
 
@@ -19,5 +18,7 @@ app.use('/api/v1/users', userRouter)
 //Post Routes
 import postRouter from './routes/post.route.js'
 app.use('/api/v1/users', postRouter)
+
+
 
 export { app };

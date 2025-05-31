@@ -3,6 +3,8 @@ import { ApiError } from '../utils/APIError.js';
 import { ApiResponse } from '../utils/APIResponce.js'
 import { Post } from '../models/post.model.js';
 import { User } from '../models/user.model.js';
+import { uploadOnCloudinary } from '../utils/cloudinary.js'
+
 
 const postblog = asyncHandler(async (req, res) => {
     const { title, category, excerpt, content } = req.body;
@@ -12,6 +14,19 @@ const postblog = asyncHandler(async (req, res) => {
     }
 
     const currentLoggedInUser = req.user;
+    const imageLocalPath = req.file.path;
+
+    if (!imageLocalPath) {
+        throw new ApiError(400, "IMAGE FILE IS REQUIRED");
+    }
+
+    const image = await uploadOnCloudinary(imageLocalPath);
+
+    if (!image) {
+        throw new ApiError(400, "IMAGE FILE IS REQUIRED");
+    }
+
+
 
     // Create new post
     const post = await Post.create({
@@ -19,6 +34,7 @@ const postblog = asyncHandler(async (req, res) => {
         category,
         excerpt,
         content,
+        image: image.url || "",
         userId: currentLoggedInUser._id
     });
 
@@ -42,6 +58,22 @@ const updateblog = asyncHandler(async (req, res) => {
     const id = req.params.id;
     const currentLoggedInUser = req.user;
 
+
+    const imageLocalPath = req.file.path;
+
+    if (!imageLocalPath) {
+        throw new ApiError(400, "IMAGE FILE IS REQUIRED");
+    }
+
+    const image = await uploadOnCloudinary(imageLocalPath);
+
+    if (!image) {
+        throw new ApiError(400, "IMAGE FILE IS REQUIRED");
+    }
+
+
+
+
     const post = await Post.findById(id);
     if (!post) {
         throw new ApiError(404, "POST NOT FOUND");
@@ -58,7 +90,7 @@ const updateblog = asyncHandler(async (req, res) => {
 
     const updatePost = await Post.findByIdAndUpdate(
         id,
-        { title, category, excerpt, content },
+        { title, category, excerpt, content ,image:image.url },
         { new: true }
     );
 
@@ -108,4 +140,34 @@ const deleteBlog = asyncHandler(async (req, res) => {
     );
 });
 
-export { postblog, updateblog, deleteBlog }
+const allPostedBlog = asyncHandler(async (req, res) => {
+    const posts = await Post.find(); // ✅ await is required
+
+    if (!posts || posts.length === 0) {
+        throw new ApiError(402, "NO POSTS FOUND");
+    }
+
+    return res.status(200).json(
+        new ApiResponse(200, posts, "ALL POSTS FOUND SUCCESSFULLY")
+    );
+});
+
+
+const findUserPostedblog = asyncHandler(async (req, res) => {
+    const currentLoggedInUser = req.user;
+    console.log(currentLoggedInUser._id);
+
+    const posts = await Post.find({ userId: currentLoggedInUser._id });
+
+    if (!posts || posts.length === 0) {
+        throw new ApiError(404, "No posts found for this user");
+    }
+
+    return res.status(200).json(
+        new ApiResponse(200, posts, "User's posts fetched successfully")
+    );
+})
+
+
+
+export { postblog, updateblog, deleteBlog, allPostedBlog, findUserPostedblog }
