@@ -13,5 +13,4 @@ postRouter.route('/allpost').get(verifyToken, allPostedBlog)
 postRouter.route('/allUserpost').get(verifyToken, findUserPostedblog)
 
 
-
 export { postRouter };

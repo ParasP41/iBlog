@@ -9,4 +9,5 @@ commentRouter.route('/allPostComment/:id').get(verifyToken,findAllPostComment);
 commentRouter.route('/editPostComment/:commentId/:postId').put(verifyToken,editPostComment);
 commentRouter.route('/deletePostComment/:commentId/:postId').delete(verifyToken,deletePostComment);
 
+
 export { commentRouter };

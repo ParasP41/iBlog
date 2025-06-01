@@ -50,7 +50,13 @@ const userSchma = new mongoose.Schema({
     bio: {
         type: String,
         default: ""
-    }
+    },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ],
 }, { timestamps: true })
 
 export const User = mongoose.model('User', userSchma);

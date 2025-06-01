@@ -35,7 +35,6 @@ const addComment = asyncHandler(async (req, res) => {
     );
 });
 
-
 const findAllPostComment = asyncHandler(async (req, res) => {
     const postId = req.params.id;
 
@@ -53,7 +52,6 @@ const findAllPostComment = asyncHandler(async (req, res) => {
         )
     );
 });
-
 
 const editPostComment = asyncHandler(async (req, res) => {
     const { comment } = req.body;

@@ -23,5 +23,10 @@ app.use('/api/v1/users', postRouter)
 import { commentRouter } from './routes/comment.route.js';
 app.use('/api/v1/users', commentRouter);
 
+//Like Routes
+import { likeRouter } from './routes/like.route.js';
+app.use('/api/v1/users', likeRouter);   
+
+
 
 export { app };
