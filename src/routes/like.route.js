@@ -6,4 +6,5 @@ const likeRouter = Router();
 
 likeRouter.route('/like/:id').post(verifyToken,likePost)
 
+
 export { likeRouter };

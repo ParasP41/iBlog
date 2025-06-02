@@ -50,7 +50,11 @@ const userSchma = new mongoose.Schema({
         type: String,
         default: ""
     },
-    
+    pins: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Post"
+        }
+    ],
 }, { timestamps: true })
-
 export const User = mongoose.model('User', userSchma);

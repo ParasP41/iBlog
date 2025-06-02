@@ -2,7 +2,6 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import { ApiError } from '../utils/APIError.js';
 import { ApiResponse } from '../utils/APIResponce.js'
 import { Post } from '../models/post.model.js';
-import { User } from '../models/user.model.js';
 
 const likePost = asyncHandler(async (req, res) => {
     const postId = req.params.id;
