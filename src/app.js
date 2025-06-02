@@ -31,6 +31,10 @@ app.use('/api/v1/users', likeRouter);
 import { pinRouter } from './routes/pin.route.js';
 app.use('/api/v1/users', pinRouter);   
 
+//Download Routes
+import { downloadRouter } from './routes/download.route.js';
+app.use('/api/v1/users', downloadRouter);   
+
 
 
 export { app };
