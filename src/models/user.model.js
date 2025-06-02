@@ -39,7 +39,6 @@ const userSchma = new mongoose.Schema({
     },
     password: {
         type: String,
-        // required: [true, 'Password is required'],
         required: true,
         trim: true
     },
@@ -51,12 +50,7 @@ const userSchma = new mongoose.Schema({
         type: String,
         default: ""
     },
-    likes: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
-    ],
+    
 }, { timestamps: true })
 
 export const User = mongoose.model('User', userSchma);

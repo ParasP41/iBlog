@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { likePost } from "../controllers/like.controller.js";
+import { verifyToken } from "../middleware/verifyToken.middleware.js";
 const likeRouter = Router();
 
-likeRouter.get('/like', (req, res) => {
-  res.status(200).json({ message: "Like route works!" });
-});
+
+likeRouter.route('/like/:id').post(verifyToken,likePost)
 
 export { likeRouter };

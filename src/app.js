@@ -27,6 +27,10 @@ app.use('/api/v1/users', commentRouter);
 import { likeRouter } from './routes/like.route.js';
 app.use('/api/v1/users', likeRouter);   
 
+//Pins Routes
+import { pinRouter } from './routes/pin.route.js';
+app.use('/api/v1/users', pinRouter);   
+
 
 
 export { app };

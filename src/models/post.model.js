@@ -22,7 +22,7 @@ const postSchema = new mongoose.Schema({
     trim: true,
   },
   image: {
-    type: String, 
+    type: String,
     required: false,
     trim: true,
   },
@@ -31,6 +31,12 @@ const postSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
 }, { timestamps: true });
 
 export const Post = mongoose.model('Post', postSchema);
