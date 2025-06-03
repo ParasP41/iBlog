@@ -6,6 +6,6 @@
 
 Future Plans,
     Auth
-        Auth Inhasment like while update the User Profile i should ask for the password verification,
-        Login with Google and gitHub or Both,
-        Mobile Number OTP Verification with like updating the user profile login with OTP etc
+        -Auth Inhasment like while update the User Profile sensitive field i should ask for the password verification,
+        -Login with Google and gitHub or Both,
+        -Mobile Number OTP Verification with like updating the sensitive field like email user profile login with OTP etc
