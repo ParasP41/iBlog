@@ -90,7 +90,7 @@ const updateblog = asyncHandler(async (req, res) => {
 
     const updatePost = await Post.findByIdAndUpdate(
         id,
-        { title, category, excerpt, content ,image:image.url },
+        { title, category, excerpt, content, image: image.url },
         { new: true }
     );
 
@@ -169,5 +169,57 @@ const findUserPostedblog = asyncHandler(async (req, res) => {
 })
 
 
+const categoryPost = asyncHandler(async (req, res) => {
+    const category = req.query.category;
 
-export { postblog, updateblog, deleteBlog, allPostedBlog, findUserPostedblog }
+    if (!category) {
+        throw new ApiError(400, "CATEGORY ARE REQUIRED");
+    }
+
+    const categoryPost = await Post.find({
+        category: { $regex: new RegExp(`^${category}$`, 'i') }
+    });
+
+    if (categoryPost.length === 0) {
+        throw new ApiError(400, "NO POSTS FOUND FOR THIS CATEGORY");
+    }
+
+
+    return res.status(200).
+        json(new ApiResponse(
+            200,
+            categoryPost,
+            `CATEGORY ${category} POST`
+        ));
+});
+
+const globalSearchPost = asyncHandler(async (req, res) => {
+    const search = req.query.search;
+
+    if (!search) {
+        throw new ApiError(400, "SEARCH TEXT IS REQUIRED");
+    }
+
+    const results = await Post.find({
+        $or: [
+            { title: { $regex: search, $options: "i" } },
+            { category: { $regex: search, $options: "i" } }
+        ]
+    });
+
+    if (!results.length) {
+        throw new ApiError(404, "NO POSTS MATCH YOUR SEARCH");
+    }
+
+    return res.status(200).json(
+        new ApiResponse(
+            200,
+            results,
+            `SEARCH RESULTS FOR '${search}'`
+        )
+    );
+});
+
+
+
+export { postblog, updateblog, deleteBlog, allPostedBlog, findUserPostedblog, categoryPost, globalSearchPost }

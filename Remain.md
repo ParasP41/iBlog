@@ -8,8 +8,6 @@
 
 5.Profile Update Controller
 
-6.Post filter through (Category , Title)
-
 Auth
     Auth Inhasment like while update the User Profile i should ask for the password verification,
     Login with Google and gitHub or Both,
