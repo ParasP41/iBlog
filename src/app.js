@@ -1,12 +1,16 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 const app = express();
 
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
 app.use(express.static('public'));
 app.use(cookieParser());
-
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true
+}))
 
 
 
@@ -25,15 +29,15 @@ app.use('/api/v1/users', commentRouter);
 
 //Like Routes
 import { likeRouter } from './routes/like.route.js';
-app.use('/api/v1/users', likeRouter);   
+app.use('/api/v1/users', likeRouter);
 
 //Pins Routes
 import { pinRouter } from './routes/pin.route.js';
-app.use('/api/v1/users', pinRouter);   
+app.use('/api/v1/users', pinRouter);
 
 //Download Routes
 import { downloadRouter } from './routes/download.route.js';
-app.use('/api/v1/users', downloadRouter);   
+app.use('/api/v1/users', downloadRouter);
 
 
 

@@ -2,13 +2,10 @@
 
 2.My email will @{something}.com
 
-3.setup cors
+4.handler raw pdf at frontendzz
 
-4.handler raw pdf at frontend
-
-5.Profile Update Controller
-
-Auth
-    Auth Inhasment like while update the User Profile i should ask for the password verification,
-    Login with Google and gitHub or Both,
-    Mobile Number OTP Verification with like updating the user profile login with OTP etc
+Future Plans,
+    Auth
+        Auth Inhasment like while update the User Profile i should ask for the password verification,
+        Login with Google and gitHub or Both,
+        Mobile Number OTP Verification with like updating the user profile login with OTP etc

@@ -2,6 +2,7 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import { User } from '../models/user.model.js';
 import { ApiError } from '../utils/APIError.js';
 import { ApiResponse } from '../utils/APIResponce.js'
+import { uploadOnCloudinary } from '../utils/cloudinary.js'
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 const options = {
@@ -13,15 +14,14 @@ const options = {
 
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, userName, email, password } = req.body;
-    const confirm_password=req.body;
+    const confirm_password = req.body;
 
     if (!firstName || !lastName || !userName || !email || !password || !confirm_password) {
         throw new ApiError(400, "REQUIRED FIELD IS MISSING ( firstName, lastName, username, email, password )");
     }
 
-    if(confirm_password===password)
-    {
-        throw new ApiError(400,"IMVALID CRDENTIALS");
+    if (confirm_password === password) {
+        throw new ApiError(400, "IMVALID CRDENTIALS");
     }
 
     const existingUser = await User.findOne({
@@ -119,8 +119,48 @@ const logout = asyncHandler(async (req, res) => {
         );
 });
 
+const updateProfile = asyncHandler(async (req, res) => {
+    const { firstName, lastName, role, bio } = req.body;
+    if (!firstName || !lastName || !role || !bio) {
+        throw new ApiError(400, "REQUIRED FIELD IS MISSING ( firstName, lastName, username, email, password )");
+    }
+
+    if (!req.file || !req.file.path) {
+        throw new ApiError(400, "IMAGE FILE IS REQUIRED");
+    }
+
+    const currentLoggedInUser = req.user;
+    const pictureLocalPath = req.file.path;
+
+    const picture = await uploadOnCloudinary(pictureLocalPath);
+
+    if (!picture) {
+        throw new ApiError(400, "IMAGE FILE IS REQUIRED");
+    }
+
+    const updateUser = await User.findByIdAndUpdate(currentLoggedInUser._id, {
+        firstName,
+        lastName,
+        role,
+        bio,
+        picture: picture.url || "",
+    },
+        {
+            new: true
+        }).select("-password");
+
+    if (!updateUser) {
+        throw new ApiError(404, "USER NOT FOUND");
+    }
+
+
+    return res.status(200)
+        .json(new ApiResponse(200,
+            updateUser,
+            "UPDATED USER"
+        ))
+})
 
 export {
-    registerUser, login, logout,
-    
+    registerUser, login, logout, updateProfile
 };
