@@ -4,6 +4,13 @@
 
 4.handler raw pdf at frontendzz
 
+5.Other user Profile and info
+
+6.Reply on his comment by user who posted it
+
+7.Post recomandaion
+
+
 Future Plans,
     Auth
         -Auth Inhasment like while update the User Profile sensitive field i should ask for the password verification,
